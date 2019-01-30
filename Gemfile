@@ -52,10 +52,10 @@ group :development do
   gem 'guard-bundler', '~> 2.2', '>= 2.2.1'
   gem 'annotate', '~> 2.7', '>= 2.7.4'
   gem 'letter_opener', '~> 1.7'
+  gem 'faker', '~> 1.9', '>= 1.9.1'
 end
 
 gem 'paper_trail', '~> 10.1'
 
-gem 'faker', '~> 1.9', '>= 1.9.1'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
