@@ -35,12 +35,20 @@ class Reservation < ApplicationRecord
     end
   end
   after_create do 
-    RestaurantMailer.to_guest(self).deliver!
-    RestaurantMailer.to_restaurant(self).deliver!
+    begin
+      RestaurantMailer.to_guest(self).deliver!
+      RestaurantMailer.to_restaurant(self).deliver!
+    rescue
+      puts "Email Issue"
+    end
   end
 
   after_update do
-    RestaurantMailer.to_guest_update(self).deliver!
-    RestaurantMailer.to_restaurant_update(self).deliver!
+    begin  
+      RestaurantMailer.to_guest_update(self).deliver!
+      RestaurantMailer.to_restaurant_update(self).deliver!
+    rescue  
+      puts 'Email Issue'
+    end
   end
 end
