@@ -51,9 +51,10 @@ group :development do
   gem 'guard-livereload', '~> 2.5', '>= 2.5.2'
   gem 'guard-bundler', '~> 2.2', '>= 2.2.1'
   gem 'annotate', '~> 2.7', '>= 2.7.4'
-  gem 'faker', '~> 1.9', '>= 1.9.1'
   gem 'letter_opener', '~> 1.7'
 end
+
+gem 'faker', '~> 1.9', '>= 1.9.1'
 
 gem 'paper_trail', '~> 10.1'
 
