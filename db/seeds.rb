@@ -41,20 +41,20 @@ end
 		end
 	end
 end
-Restaurant.all.each do |restaurant|
-	restaurant.restaurant_tables.all.each do |restaurant_table|
-		restaurant.restaurant_shifts.each do |restaurant_shift|
-			Guest.all.each do |guest|
-				reservation = restaurant.reservations.new
-				reservation.restaurant_table = restaurant_table
-				reservation.restaurant_shift = restaurant_shift
-				reservation.guest = guest
-				reservation.reservation_time = "2019-01-01 11:29:33"
-				reservation.guest_count = Faker::Number.between(1,10)
-				if reservation.save
-					puts "reservation => #{reservation.id}"
-				end
-			end
-		end
-	end
-end
+# Restaurant.all.each do |restaurant|
+# 	restaurant.restaurant_tables.all.each do |restaurant_table|
+# 		restaurant.restaurant_shifts.each do |restaurant_shift|
+# 			Guest.all.each do |guest|
+# 				reservation = restaurant.reservations.new
+# 				reservation.restaurant_table = restaurant_table
+# 				reservation.restaurant_shift = restaurant_shift
+# 				reservation.guest = guest
+# 				reservation.reservation_time = "2019-01-01 11:29:33"
+# 				reservation.guest_count = Faker::Number.between(1,10)
+# 				if reservation.save
+# 					puts "reservation => #{reservation.id}"
+# 				end
+# 			end
+# 		end
+# 	end
+# end
