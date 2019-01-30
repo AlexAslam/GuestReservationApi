@@ -18,7 +18,7 @@ FactoryBot.define do
     restaurant { nil }
     restaurant_table { nil }
     restaurant_shift { nil }
-    reservation_time { "2019-01-30 11:29:33" }
+    reservation_time { "2019-01-01 11:29:33" }
     guest { nil }
     guest_count { 1 }
   end
@@ -26,7 +26,7 @@ FactoryBot.define do
     restaurant { nil }
     restaurant_table { nil }
     restaurant_shift { nil }
-    reservation_time { "2019-01-30 11:29:33" }
+    reservation_time { "2019-01-01 11:29:33" }
     guest { nil }
     guest_count { 0 }
   end

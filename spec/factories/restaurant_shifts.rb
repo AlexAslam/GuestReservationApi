@@ -27,28 +27,28 @@ FactoryBot.define do
   end
   factory :morning_restaurant_shift, class: "RestaurantShift" do
     shift_type { "morning" }
-    start_time { "2019-01-29 09:00:00" }
-    end_time { "2019-01-29 14:00:00" }
+    start_time { "2019-01-01 09:00:00" }
+    end_time { "2019-01-01 14:00:00" }
     restaurant { nil }
   end
 
   factory :evening_restaurant_shift, class: "RestaurantShift" do
     shift_type { "morning" }
-    start_time { "2019-01-29 14:00:00" }
-    end_time { "2019-01-29 22:00:00" }
+    start_time { "2019-01-01 14:00:00" }
+    end_time { "2019-01-01 22:00:00" }
     restaurant { nil }
   end
   factory :invalid_morning_restaurant_shift, class: "RestaurantShift" do
     shift_type { "morning" }
-    start_time { "2019-01-29 14:00:00" }
-    end_time { "2019-01-29 09:00:00" }
+    start_time { "2019-01-01 14:00:00" }
+    end_time { "2019-01-01 09:00:00" }
     restaurant { nil }
   end
 
   factory :invalid_evening_restaurant_shift, class: "RestaurantShift" do
     shift_type { "morning" }
-    start_time { "2019-01-29 22:00:00" }
-    end_time { "2019-01-29 14:00:00" }
+    start_time { "2019-01-01 22:00:00" }
+    end_time { "2019-01-01 14:00:00" }
     restaurant { nil }
   end
 end

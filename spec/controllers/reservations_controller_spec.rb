@@ -28,19 +28,16 @@ RSpec.describe ReservationsController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Reservation. As you add validations to Reservation, be sure to
   # adjust the attributes here as well.
+  let(:guest){create(:guest)}
+  let(:restaurant){create(:restaurant)}
+  let(:restaurant_table){create(:restaurant_table,restaurant:restaurant)}
+  let(:restaurant_shift){create(:morning_restaurant_shift,restaurant:restaurant)}
+
   let(:valid_attributes) {
-    guest = create(:guest)
-    restaurant = create(:restaurant)
-    restaurant_table = create(:restaurant_table,restaurant:restaurant)
-    restaurant_shift = create(:morning_restaurant_shift,restaurant:restaurant)
     attributes_for(:reservation,:guest=>guest,:restaurant=>restaurant,:restaurant_table=>restaurant_table,:restaurant_shift=>restaurant_shift)
   }
 
   let(:valid_attributes_with_ids){
-    guest = create(:guest)
-    restaurant = create(:restaurant)
-    restaurant_table = create(:restaurant_table,restaurant:restaurant)
-    restaurant_shift = create(:morning_restaurant_shift,restaurant:restaurant)
     attributes_for(:reservation,:guest_id=>guest.id,:restaurant_id=>restaurant.id,:restaurant_table_id=>restaurant_table.id,:restaurant_shift_id=>restaurant_shift.id)
   }
 
@@ -146,4 +143,48 @@ RSpec.describe ReservationsController, type: :controller do
     end
   end
 
+  describe "action response for invalid time attributes" do
+    let(:invalid_time_reservation_attributes){attributes_for(:reservation,:reservation_time=>"2019-01-01 08:00:00",:guest_id=>guest.id,:restaurant_id=>restaurant.id,:restaurant_table_id=>restaurant_table.id,:restaurant_shift_id=>restaurant_shift.id)}
+    it "create with invalid reservation time and gets error" do
+      post :create, params: {reservation: invalid_time_reservation_attributes}, session: valid_session
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response.content_type).to eq('application/json')      
+    end
+    let(:lesser_time_reservation_attributes){attributes_for(:reservation,:reservation_time=>"2019-01-01 08:00:00",:guest_id=>guest.id,:restaurant_id=>restaurant.id,:restaurant_table_id=>restaurant_table.id,:restaurant_shift_id=>restaurant_shift.id)}
+    it "create with invalid reservation time and gets error" do
+      post :create, params: {reservation: lesser_time_reservation_attributes}, session: valid_session
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response.content_type).to eq('application/json')      
+    end
+    let(:greater_time_reservation_attributes){attributes_for(:reservation,:reservation_time=>"2019-01-01 24:00:00",:guest_id=>guest.id,:restaurant_id=>restaurant.id,:restaurant_table_id=>restaurant_table.id,:restaurant_shift_id=>restaurant_shift.id)}
+    it "create with invalid reservation time and gets error" do
+      post :create, params: {reservation: greater_time_reservation_attributes}, session: valid_session
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response.content_type).to eq('application/json')      
+    end
+  end
+
+  describe "action response for valid time attributes" do
+    let(:valid_time_reservation_attributes){attributes_for(:reservation,:guest_id=>guest.id,:restaurant_id=>restaurant.id,:restaurant_table_id=>restaurant_table.id,:restaurant_shift_id=>restaurant_shift.id)}
+    it "create with valid reservation time and gets error" do
+      post :create, params: {reservation: valid_time_reservation_attributes}, session: valid_session
+      expect(response).to have_http_status(:created)
+      expect(response.content_type).to eq('application/json')
+      expect(response.location).to eq(reservation_url(Reservation.last))
+    end
+    let(:exact_start_time_reservation_attributes){attributes_for(:reservation,:reservation_time=>"2019-01-01 09:00:00",:guest_id=>guest.id,:restaurant_id=>restaurant.id,:restaurant_table_id=>restaurant_table.id,:restaurant_shift_id=>restaurant_shift.id)}
+    it "create with invalid reservation time and gets error" do
+      post :create, params: {reservation: exact_start_time_reservation_attributes}, session: valid_session
+      expect(response).to have_http_status(:created)
+      expect(response.content_type).to eq('application/json')
+      expect(response.location).to eq(reservation_url(Reservation.last))      
+    end
+    let(:exact_end_time_reservation_attributes){attributes_for(:reservation,:reservation_time=>"2019-01-01 14:00:00",:guest_id=>guest.id,:restaurant_id=>restaurant.id,:restaurant_table_id=>restaurant_table.id,:restaurant_shift_id=>restaurant_shift.id)}
+    it "create with invalid reservation time and gets error" do
+      post :create, params: {reservation: exact_end_time_reservation_attributes}, session: valid_session
+      expect(response).to have_http_status(:created)
+      expect(response.content_type).to eq('application/json')
+      expect(response.location).to eq(reservation_url(Reservation.last))      
+    end
+  end
 end

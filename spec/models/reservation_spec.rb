@@ -66,4 +66,30 @@ RSpec.describe Reservation, type: :model do
 	  	end
 	  end
 	end
+
+	describe "reservation time should be in between shift time" do
+		let(:guest){create(:guest)}
+		let(:restaurant){create(:restaurant)}
+		let(:restaurant_table){create(:restaurant_table,restaurant:restaurant)}
+		let(:restaurant_shift){create(:morning_restaurant_shift,restaurant:restaurant)}
+		context "Valid Reservation Time" do
+			let(:valid_time_reservation){attributes_for(:reservation,guest:guest,restaurant:restaurant,restaurant_table:restaurant_table,restaurant_shift:restaurant_shift)}
+			it "given valid time" do
+				reservation = Reservation.new(valid_time_reservation)
+				expect(reservation.valid?).not_to be_falsy
+			end
+		end
+		context "Invalid Reservation Time" do
+			let(:lesser_time_reservation){attributes_for(:reservation,:reservation_time=>"2019-01-01 08:00:00",guest:guest,restaurant:restaurant,restaurant_table:restaurant_table,restaurant_shift:restaurant_shift)}
+			it "given lesser time" do
+				reservation = Reservation.new(lesser_time_reservation)
+				expect(reservation.valid?).to be_falsy
+			end
+			let(:greater_time_reservation){attributes_for(:reservation,:reservation_time=>"2019-01-01 24:00:00",guest:guest,restaurant:restaurant,restaurant_table:restaurant_table,restaurant_shift:restaurant_shift)}
+			it "given lesser time" do
+				reservation = Reservation.new(lesser_time_reservation)
+				expect(reservation.valid?).to be_falsy
+			end
+		end
+	end
 end

@@ -26,7 +26,8 @@ class Reservation < ApplicationRecord
   		self.errors.add(:base,"Reservation Time Cant be empty")
     else
       if restaurant_shift.present?
-        if restaurant_shift.start_time < reservation_time && restaurant_shift.end_time > reservation_time
+        #  09:00:00 > 08:00:00 || 22:00:00 < 08:00:00
+        if restaurant_shift.start_time > reservation_time || restaurant_shift.end_time < reservation_time
           self.errors.add(:base,"Reservation Time Should be in shift")
         end
       end
