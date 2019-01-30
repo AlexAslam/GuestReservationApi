@@ -52,8 +52,9 @@ group :development do
   gem 'guard-bundler', '~> 2.2', '>= 2.2.1'
   gem 'annotate', '~> 2.7', '>= 2.7.4'
   gem 'letter_opener', '~> 1.7'
-  gem 'faker', '~> 1.9', '>= 1.9.1'
 end
+
+gem 'faker', '~> 1.9', '>= 1.9.1'
 
 gem 'paper_trail', '~> 10.1'
 
