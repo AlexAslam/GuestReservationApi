@@ -34,8 +34,8 @@ module UmaiAssignment
       address:              'smtp.gmail.com',
       port:                 587,
       domain:               'gmail.com',
-      user_name:            ENV[:stmp_email],
-      password:             ENV[:stmp_password],
+      user_name:            ENV["SMTPEMAIL"],
+      password:             ENV["SMTPPASSWORD"],
       authentication:       'plain',
       enable_starttls_auto: true
   }
