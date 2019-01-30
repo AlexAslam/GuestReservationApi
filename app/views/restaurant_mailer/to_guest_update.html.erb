@@ -25,11 +25,11 @@
        <br>
        <h2 align="center">Hi <%= @reservation.guest.name %>, Your reservation details are below:</h2>
        <h2 align="center">Previous Details</h2>
-       <p style="padding-left: 55px; padding-top: 55px">Name: <%= @reservation.versions.last.reify.restaurant.name %></p>
-       <p style="padding-left: 55px; padding-right: 55px;">Email: <%=@reservation.versions.last.reify.restaurant.email %></p>
-       <p style="padding-left: 55px; padding-right: 55px;">Phone: <%=@reservation.versions.last.reify.restaurant.phone %></p>
-       <p style="padding-left: 55px; padding-right: 55px;">Table: <%=@reservation.versions.last.reify.restaurant_table.name %></p>
-       <p style="padding-left: 55px; padding-right: 55px;">Guest: <%=@reservation.versions.last.reify.guest_count %></p>
+       <p style="padding-left: 55px; padding-top: 55px">Name: <%= @reservation.versions.present? ? @reservation.versions.last.reify.present? ? @reservation.versions.last.reify.restaurant.name : "" : "" %></p>
+       <p style="padding-left: 55px; padding-right: 55px;">Email: <%= @reservation.versions.present? ? @reservation.versions.last.reify.present? ? @reservation.versions.last.reify.restaurant.email : "" : "" %></p>
+       <p style="padding-left: 55px; padding-right: 55px;">Phone: <%= @reservation.versions.present? ? @reservation.versions.last.reify.present? ? @reservation.versions.last.reify.restaurant.phone : "" : "" %></p>
+       <p style="padding-left: 55px; padding-right: 55px;">Table: <%= @reservation.versions.present? ? @reservation.versions.last.reify.present? ? @reservation.versions.last.reify.restaurant_table.name : "" : "" %></p>
+       <p style="padding-left: 55px; padding-right: 55px;">Guest: <%= @reservation.versions.present? ? @reservation.versions.last.reify.present? ? @reservation.versions.last.reify.guest_count : "" : "" %></p>
        <br>
        <br>
        <h2 align="center">Updated Details</h2>

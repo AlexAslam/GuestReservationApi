@@ -8,6 +8,7 @@ class ReservationsController < ApplicationController
     else
       @reservations = Reservation.all.includes(:restaurant_table,:guest)
     end
+    render "reservations/index.json.jbuilder"
   end
 
   # GET /reservations/1
