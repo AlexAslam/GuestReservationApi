@@ -3,9 +3,11 @@ class ReservationsController < ApplicationController
 
   # GET /reservations
   def index
-    @reservations = Reservation.all
-
-    render json: @reservations
+    if params[:restaurant_id].present?
+      @reservations = Reservation.where(restaurant_id:params[:restaurant_id]).includes(:restaurant_table,:guest)
+    else
+      @reservations = Reservation.all.includes(:restaurant_table,:guest)
+    end
   end
 
   # GET /reservations/1
