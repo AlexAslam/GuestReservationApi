@@ -30,6 +30,15 @@ module UmaiAssignment
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
+    config.action_mailer.smtp_settings = {
+      address:              'smtp.gmail.com',
+      port:                 587,
+      domain:               'gmail.com',
+      user_name:            "alexaslamdeveloper@gmail.com",
+      password:             "_pointers009",
+      authentication:       'plain',
+      enable_starttls_auto: true
+  }
     config.api_only = true
     config.generators do |g|
        g.factory_bot dir: "spec/factories"

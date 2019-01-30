@@ -18,4 +18,6 @@ class Restaurant < ApplicationRecord
 	
 	has_many :restaurant_shifts, :dependent => :restrict_with_error
 	has_many :restaurant_tables, :dependent => :restrict_with_error
+	has_many :reservations, :dependent => :restrict_with_error
+	has_many :guests,through: :reservations
 end

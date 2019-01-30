@@ -14,6 +14,7 @@
 #
 
 class Reservation < ApplicationRecord
+  has_paper_trail
   belongs_to :restaurant
   belongs_to :restaurant_table
   belongs_to :restaurant_shift
@@ -32,5 +33,14 @@ class Reservation < ApplicationRecord
         end
       end
     end
+  end
+  after_create do 
+    RestaurantMailer.to_guest(self).deliver!
+    RestaurantMailer.to_restaurant(self).deliver!
+  end
+
+  after_update do
+    RestaurantMailer.to_guest_update(self).deliver!
+    RestaurantMailer.to_restaurant_update(self).deliver!
   end
 end

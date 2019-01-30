@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+<style>
+   
+   .button {
+    background-color: #008CBA; /* Blue */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+</style>
+</head>
+<body style="background-color: #f6f6f6">
+
+    <div style="background: white; margin:60px">
+       <br>
+       <h2 align="center">Hi <%= @reservation.guest.name %>, Your reservation details are below:</h2>
+       <p style="padding-left: 55px; padding-top: 55px">Name: <%= @reservation.restaurant.name %></p>
+       <p style="padding-left: 55px; padding-right: 55px;">Email: <%=@reservation.restaurant.email %></p>
+       <p style="padding-left: 55px; padding-right: 55px;">Phone: <%=@reservation.restaurant.phone %></p>
+       <p style="padding-left: 55px; padding-right: 55px;">Table: <%=@reservation.restaurant_table.name %></p>
+       <p style="padding-left: 55px; padding-right: 55px;">Guest: <%=@reservation.guest_count %></p>
+       <br>
+       <br>
+    </div>
+
+</body>
+</html>

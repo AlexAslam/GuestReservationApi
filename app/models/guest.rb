@@ -12,4 +12,5 @@
 class Guest < ApplicationRecord
 	validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
 	validates_presence_of :name,:email
+	has_many :reservations, :dependent => :restrict_with_error
 end
