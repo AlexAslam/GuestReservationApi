@@ -2,7 +2,7 @@
 #
 # Table name: restaurant_tables
 #
-#  id            :integer          not null, primary key
+#  id            :bigint(8)        not null, primary key
 #  restaurant_id :integer
 #  name          :string           default("")
 #  min_guest     :integer          default(0)

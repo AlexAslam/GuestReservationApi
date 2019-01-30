@@ -2,7 +2,7 @@
 #
 # Table name: restaurants
 #
-#  id         :integer          not null, primary key
+#  id         :bigint(8)        not null, primary key
 #  name       :string           default("")
 #  email      :string           default("")
 #  phone      :string           default("")

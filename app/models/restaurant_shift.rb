@@ -2,10 +2,10 @@
 #
 # Table name: restaurant_shifts
 #
-#  id            :integer          not null, primary key
+#  id            :bigint(8)        not null, primary key
 #  shift_type    :string           default("")
-#  start_time    :datetime         default(NULL)
-#  end_time      :datetime         default(NULL)
+#  start_time    :datetime
+#  end_time      :datetime
 #  restaurant_id :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
